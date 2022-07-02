@@ -5,7 +5,6 @@ const route = require('./route/route')
 
 const app = express()
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended:true}))
 
 const url = "mongodb+srv://group41Database:fxvFyAoe7VLOVLFs@cluster0.v8xey4l.mongodb.net/group41Database"
 const port = process.env.PORT || 3000
@@ -19,7 +18,3 @@ app.use('/',route)
 app.listen(port,function(){
     console.log("express app is running on PORT"+(port))
 })
-
-
-
-

@@ -48,15 +48,6 @@ const isValidMobile = function (mobile) {
 }
 
 
-
-// //Boolean Validation
-// const isBoolean = function (value) {
-//     if (value === true || value === false) return true
-//     return false
-
-// }
-
-
 //Logolink Validation
 const isValidLogoLink = function (logolink) {
     try{
@@ -89,6 +80,5 @@ module.exports = {
     isValidFullName,
     isValidEmail,
     isValidMobile,
-    // isBoolean,
     isValidLogoLink
 }

@@ -2,7 +2,7 @@ const internModel = require("../models/internModel")
 const collegeModel = require("../models/collegeModel")
 const validation = require("../validator/validator");
 
-let { isEmpty, isValidName, isValidEmail, isValidMobile } = validation;             //Destruction Validator Functions Here
+let { isEmpty, isValidName, isValidEmail, isValidMobile } = validation;             
 
 //================================================Intern's Details Creation ============================================
 
@@ -23,17 +23,18 @@ const createInterns = async function (req, res) {
             return res.status(400).send({ status: false, msg: "Intern name should be valid" })
         }
 
+
         if (!isEmpty(email)) {
             return res.status(400).send({ status: false, msg: " please enter email" })
         }
         if (!isValidEmail(email)) {
             return res.status(400).send({ status: false, msg: " please enter valid email" })
         }
-
         let emailId = await internModel.findOne({ email: email })
         if (emailId) {
             return res.status(400).send({ status: false, msg: "emailId already exists" })
         }
+        
 
         if (!isEmpty(mobile)) {
             return res.status(400).send({ status: false, msg: " please enter mobile number" })
@@ -47,10 +48,12 @@ const createInterns = async function (req, res) {
         }
 
 
-        let collegeLowerCase = collegeName.replace(/\s+/g, "").toLowerCase()
         if (!isEmpty(collegeName)) {
             return res.status(400).send({ status: false, msg: "Enter college Name" })
         }
+        
+
+        let collegeLowerCase = collegeName.replace(/\s+/g, " ").toLowerCase()
         let college = await collegeModel.find({ name: collegeLowerCase })
         if (college.length==0) {
             return res.status(404).send({ status: false, msg: "No College Found" })
